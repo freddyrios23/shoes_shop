@@ -36,7 +36,7 @@ public class ClienteService {
     }
 
     public ClienteDTO buscarPorId(Integer id){
-        Cliente cliente = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Boleta no encontrada"));
+        Cliente cliente = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Cliente no encontrado"));
         return convertirDTO(cliente);
     }
 
@@ -45,7 +45,7 @@ public class ClienteService {
     }
 
     public Cliente actualizarCliente(Integer id,Cliente cliente){
-        Cliente client = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Boleta no encontrada en los resgitros"));
+        Cliente client = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("Cliente no encontrado en los resgitros"));
         if (cliente.getRut()!=null) {
             client.setRut(cliente.getRut());
         }
@@ -65,7 +65,7 @@ public class ClienteService {
         try {
             Cliente cliente = clienteRepository.findById(id).orElseThrow(()-> new RuntimeException("¡Imposible eliminar! El cliente con el id" + id + "no existe"));
             clienteRepository.delete(cliente);
-            return "La boleta '" + cliente.getId() + "' ha sido eliminada exitosamente";
+            return "El cliente '" + cliente.getId() + "' ha sido eliminado exitosamente";
         } catch (Exception e) {
             return e.getMessage();
         }

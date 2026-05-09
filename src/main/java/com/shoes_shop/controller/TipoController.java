@@ -19,11 +19,7 @@ import com.shoes_shop.model.Tipo;
 import com.shoes_shop.service.TipoService;
 
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+
 
 @RestController
 @RequestMapping("/api/v1/tipos")
