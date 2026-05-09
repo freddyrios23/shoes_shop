@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.shoes_shop.DTO.BoletaDTO;
 import com.shoes_shop.model.Boleta;
+import com.shoes_shop.model.Boletas;
 import com.shoes_shop.model.Zapatilla;
 
 import jakarta.transaction.Transactional;
@@ -27,8 +28,8 @@ public class BoletaService {
         boletaDto.setTotal(boleta.getTotal());
         boletaDto.setCantidad(boleta.getCantidad());
         
-        if (boleta.getZapatillas() != null) {
-            boletaDto.setZapatillasId(boleta.getZapatillas().stream().map(Zapatilla::getId).toList());
+        if (boleta.getBoletas() != null) {
+            boletaDto.setZapatillasId(boleta.getBoletas().stream().map(Boletas::getId).toList());
         }
         return boletaDto;
     }
@@ -57,8 +58,8 @@ public class BoletaService {
         if (boleta.getCantidad()!=null) {
             ticket.setCantidad(boleta.getCantidad());
         }
-        if (boleta.getZapatillas() !=null) {
-            ticket.setZapatillas(boleta.getZapatillas());
+        if (boleta.getBoletas() !=null) {
+            ticket.setBoletas(boleta.getBoletas());
         }
         return boletaRepository.save(ticket);
     }

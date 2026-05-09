@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -42,7 +43,6 @@ public class Boleta {
     @Min(value = 1,message = "debe llevar al menos 1 zapatilla")
     private Integer cantidad;
 
-    @ManyToMany
-    @JoinTable(name = "zapatilla_boleta")
-    private List<Zapatilla> zapatillas;
+    @OneToMany(mappedBy = "boleta")
+    private List<Boletas> boletas;
 }
