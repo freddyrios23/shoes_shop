@@ -5,39 +5,50 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import com.shoes_shop.model.Colores;
-import com.shoes_shop.service.ColoresService;
+import com.shoes_shop.model.Color;
+import com.shoes_shop.service.ColorService;
 
 @RestController
-@RequestMapping("/api/v1/colores_zapatillas")
-public class ColoresController {
+@RequestMapping("/api/v1/color")
+public class ColorController {
 
     @Autowired
-    private ColoresService coloresService;
+    private ColorService colorService;
 
+    // 📋 GET todos
     @GetMapping
-    public ResponseEntity<List<Colores>> todosLosColoresZapatillas() {
-        List<Colores> colores = coloresService.obtenerTodos();
+    public ResponseEntity<List<Color>> todosLosColores() {
+        List<Color> colores = colorService.obtenerTodos();
 
         if (colores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(colores, HttpStatus.OK);
     }
 
+    // 🔍 GET por ID
+    @GetMapping("/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
+        return new ResponseEntity<>(colorService.buscarPorId(id), HttpStatus.OK);
+    }
+
+    // 💾 POST
     @PostMapping
-    public ResponseEntity<?> agregarRelacion(@RequestBody Colores relacion) {
-        try {
-            return new ResponseEntity<>(coloresService.guardarRelacion(relacion),HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("no se guardo la relacion",HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<?> agregarColor(@RequestBody Color color) {
+        return new ResponseEntity<>(colorService.guardarColor(color), HttpStatus.CREATED);
+    }
+
+    // ✏️ PUT
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Color color) {
+        return new ResponseEntity<>(colorService.actualizarColor(id, color), HttpStatus.OK);
+    }
+
+    // 🗑️ DELETE
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Integer id) {
+        return new ResponseEntity<>(colorService.eliminarColor(id), HttpStatus.OK);
     }
 }
