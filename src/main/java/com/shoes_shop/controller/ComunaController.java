@@ -14,65 +14,68 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.shoes_shop.DTO.TipoDTO;
-import com.shoes_shop.model.Tipo;
-import com.shoes_shop.service.TipoService;
+import com.shoes_shop.DTO.ComunaDTO;
+import com.shoes_shop.model.Comuna;
+import com.shoes_shop.service.ComunaService;
 
 import jakarta.validation.Valid;
 
-
 @RestController
-@RequestMapping("/api/v1/tipos")
-public class TipoController {
+@RequestMapping("/api/v1/comunas")
+public class ComunaController {
 
     @Autowired
-    private TipoService tipoService;
+    private ComunaService comunaService;
 
     @GetMapping
-    public ResponseEntity<List<TipoDTO>> todasLosTipos(){
-        List<TipoDTO> tipos = tipoService.obtenertodos();
-        if (tipos.isEmpty()) {
+    public ResponseEntity<List<ComunaDTO>> todasLascomunas(){
+        List<ComunaDTO> comunas = comunaService.obtenerTodas();
+        if (comunas.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(tipos,HttpStatus.OK);
+        return new ResponseEntity<>(comunas,HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarTipoPorId(@PathVariable Integer id){
+    public ResponseEntity<?> buscarComunaPorId(@PathVariable Integer id){
         try {
-            TipoDTO tipo = tipoService.buscarPorId(id);
-            return new ResponseEntity<>(tipo,HttpStatus.OK);
+            ComunaDTO comuna = comunaService.buscarPorID(id);
+            return new ResponseEntity<>(comuna,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("no se encontro el tipo",HttpStatus.NOT_FOUND);
-        }
+            return new ResponseEntity<>("no se encontro la comuna",HttpStatus.NOT_FOUND);
+        }    
     }
 
     @PostMapping
-    public ResponseEntity<?> agregarTipo(@Valid @RequestBody Tipo tipo){
+    public ResponseEntity<?> agregarComuna(@Valid @RequestBody Comuna comuna){
         try {
-            return new ResponseEntity<>(tipoService.guardaTipo(tipo),HttpStatus.CREATED);
+            return new ResponseEntity<>(comunaService.guardarComuna(comuna),HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>("no se guardo el Tipo",HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("no se guardo la comuna",HttpStatus.BAD_REQUEST);
         }
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> editarTipo(@PathVariable Integer id,@Valid @RequestBody Tipo tipo){
+    public ResponseEntity<?> editarComuna (@PathVariable Integer id , @Valid @RequestBody Comuna comuna){
         try {
-            Tipo editada =  tipoService.actualizarTipo(id, tipo);
+            Comuna editada = comunaService.actualizarComuna(id, comuna);
             return new ResponseEntity<>(editada,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Tipo no encontrado",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("comuna no encontrada",HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarTipo(@PathVariable Integer id){
-        String resultado = tipoService.eliminarTipo(id);
+    public ResponseEntity<String> eliminarComuna(@PathVariable Integer id){
+        String resultado = comunaService.eliminarComuna(id);
+
         if (resultado.contains("exitosamente")) {
             return new ResponseEntity<>(resultado,HttpStatus.OK);
         }else{
             return new ResponseEntity<>(resultado,HttpStatus.NOT_FOUND);
         }
     }
+
+
+
 }
