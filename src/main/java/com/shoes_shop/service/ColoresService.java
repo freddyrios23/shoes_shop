@@ -26,6 +26,6 @@ public class ColoresService {
         coloresRepository.save(relacion);
 
         return "La zapatilla " + relacion.getZapatilla().getNombre()
-                + " fue asignada al color " + relacion.getColor().getColor();
+                + " fue asignada al color " + relacion.getColor().getNombre();
     }
 }

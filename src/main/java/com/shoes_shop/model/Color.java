@@ -27,10 +27,10 @@ public class Color {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El color es obligatorio")
-    @Size(min=3,max=30,message= "El color debe tener entre 3 y 30 caracteres")
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min=3,max=30,message= "El nombre debe tener entre 3 y 30 caracteres")
     @Column(nullable = false,length = 30)
-    private String color ;
+    private String nombre ;
 
     @OneToMany(mappedBy = "color")
     private List<Colores> colores;
