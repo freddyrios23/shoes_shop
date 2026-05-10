@@ -1,6 +1,5 @@
 package com.shoes_shop.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -12,8 +11,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,32 +20,26 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
-@Table(name = "boletas")
-public class Boleta {
+@Table(name = "comunas")
+public class Comuna {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @Column(nullable = false)
-    private LocalDate fecha;
+    @NotBlank(message = "El nombre es obligatorio")
+    @Size(min=3,max=100,message = "El nombre debe tener entre 3 y 100 caracteres")
+    @Column(nullable = false,length = 100)
+    private String nombre;
 
-    @Column(nullable = false)
-    @Min(value = 1)
-    private Integer total;
-
-    @Column(nullable = false)
-    @Min(value = 1,message = "debe llevar al menos 1 zapatilla")
-    private Integer cantidad;
-
-    @OneToMany(mappedBy = "boleta")
-    private List<Boletas> boletas;
+    @OneToMany(mappedBy = "comuna")
+    private List<Cliente> clientes;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "region_id")
+    private Region region;
+    
 }

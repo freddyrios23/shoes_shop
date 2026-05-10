@@ -17,6 +17,7 @@ public class ColorController {
     @Autowired
     private ColorService colorService;
 
+    // 📋 GET todos
     @GetMapping
     public ResponseEntity<List<Color>> todosLosColores() {
         List<Color> colores = colorService.obtenerTodos();
@@ -24,43 +25,30 @@ public class ColorController {
         if (colores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-
         return new ResponseEntity<>(colores, HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<?> agregarColor(@RequestBody Color color) {
-        try {
-            return new ResponseEntity<>(colorService.guardarColor(color), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("No se pudo guardar el color", HttpStatus.BAD_REQUEST);
-        }
-    }
-
+    // 🔍 GET por ID
     @GetMapping("/{id}")
     public ResponseEntity<?> buscarPorId(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(colorService.buscarPorId(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Color no encontrado", HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(colorService.buscarPorId(id), HttpStatus.OK);
     }
 
+    // 💾 POST
+    @PostMapping
+    public ResponseEntity<?> agregarColor(@RequestBody Color color) {
+        return new ResponseEntity<>(colorService.guardarColor(color), HttpStatus.CREATED);
+    }
+
+    // ✏️ PUT
     @PutMapping("/{id}")
     public ResponseEntity<?> actualizar(@PathVariable Integer id, @RequestBody Color color) {
-        try {
-            return new ResponseEntity<>(colorService.actualizarColor(id, color), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al actualizar color", HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(colorService.actualizarColor(id, color), HttpStatus.OK);
     }
 
+    // 🗑️ DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Integer id) {
-        try {
-            return new ResponseEntity<>(colorService.eliminarColor(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Error al eliminar color", HttpStatus.BAD_REQUEST);
-        }
+        return new ResponseEntity<>(colorService.eliminarColor(id), HttpStatus.OK);
     }
 }

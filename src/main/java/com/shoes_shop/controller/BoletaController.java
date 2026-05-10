@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,10 +57,20 @@ public class BoletaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> editarBoleta(@PathVariable Integer id,@Valid @RequestBody Boleta boleta){
+    public ResponseEntity<?> editarBoleta(@PathVariable Integer id,@RequestBody Boleta boleta){
         try {
             Boleta editada = boletaService.actualizarBoleta(id, boleta);
             return new ResponseEntity<>(editada,HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Boleta no encontrada",HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<?> actualizarBoleta(@PathVariable Integer id,@Valid @RequestBody Boleta boleta){
+        try {
+            Boleta newBoleta = boletaService.actualizarBoleta(id, boleta);
+            return new ResponseEntity<>(newBoleta,HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>("Boleta no encontrada",HttpStatus.NOT_FOUND);
         }
