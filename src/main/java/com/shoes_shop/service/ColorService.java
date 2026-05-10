@@ -14,13 +14,14 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class ColorService {
-@Autowired
+
+    @Autowired
     private ColorRepository colorRepository;
 
-    private ColorDTO convertirDTO (Color  color){
+    private ColorDTO convertirDTO(Color color){
         ColorDTO colorDTO = new ColorDTO();
         colorDTO.setId(color.getId());
-        colorDTO.setNombre(color.getColor());
+        colorDTO.setNombre(color.getNombre());
         return colorDTO;
     }
 
@@ -29,7 +30,7 @@ public class ColorService {
     }
 
     public ColorDTO buscarPorId(Integer id){
-        Color color=colorRepository.findById(id).orElseThrow(()-> new RuntimeException("color no encontrado"));
+        Color color = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("Color no encontrado"));
         return convertirDTO(color);
     }
 
@@ -37,21 +38,21 @@ public class ColorService {
         return colorRepository.save(color);
     }
 
-    public Color actualizarColor (Integer id,Color color){
-        Color colr = colorRepository.findById(id).orElseThrow(()-> new RuntimeException("Color no encontrado en los registros"));
-        if (color.getColor()!=null) {
-            color.setColor(color.getColor());
+    public Color actualizarColor(Integer id, Color color){
+        Color colorDB = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("Color no encontrado en los registros"));
+
+        if (color.getNombre() != null) {
+            colorDB.setNombre(color.getNombre());
         }
-        return colorRepository.save(colr);
+
+        return colorRepository.save(colorDB);
     }
 
     public String eliminarColor(Integer id){
-        try {
-            Color color = colorRepository.findById(id).orElseThrow(()-> new RuntimeException("¿Imposible eliminar! Marca con el id" + id + "no existe"));
-            colorRepository.delete(color);
-            return "el color '" + color.getId() + "' ha sido eliminado exitosamente";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
+        Color color = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("¡Imposible eliminar! Color con el id " + id + " no existe"));
+
+        colorRepository.delete(color);
+
+        return "El color '" + color.getNombre() + "' ha sido eliminado exitosamente";
     }
 }
