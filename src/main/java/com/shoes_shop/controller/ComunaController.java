@@ -75,7 +75,5 @@ public class ComunaController {
             return new ResponseEntity<>(resultado,HttpStatus.NOT_FOUND);
         }
     }
-
-
-
+    
 }
