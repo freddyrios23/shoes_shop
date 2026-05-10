@@ -29,7 +29,4 @@ public class Tipo {
     @Size(min = 3, max = 50,message = "El nombre debe contener entre 3 y 50 mensajes")
     @Column(nullable = false,length = 100)
     private String nombre;
-    
-    
-
 }

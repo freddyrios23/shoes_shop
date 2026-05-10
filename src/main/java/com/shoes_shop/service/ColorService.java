@@ -28,7 +28,7 @@ public class ColorService {
         return colorRepository.findAll().stream().map(this::convertirDTO).toList();
     }
 
-     public ColorDTO buscarPorId(Integer id){
+    public ColorDTO buscarPorId(Integer id){
         Color color=colorRepository.findById(id).orElseThrow(()-> new RuntimeException("color no encontrado"));
         return convertirDTO(color);
     }
@@ -45,7 +45,7 @@ public class ColorService {
         return colorRepository.save(colr);
     }
 
-     public String eliminarColor(Integer id){
+    public String eliminarColor(Integer id){
         try {
             Color color = colorRepository.findById(id).orElseThrow(()-> new RuntimeException("¿Imposible eliminar! Marca con el id" + id + "no existe"));
             colorRepository.delete(color);
