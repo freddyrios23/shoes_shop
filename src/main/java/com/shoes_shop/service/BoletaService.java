@@ -21,7 +21,7 @@ public class BoletaService {
     @Autowired
     private BoletaRepository boletaRepository;
 
-    private BoletaDTO convertirADTO (Boleta boleta){
+    private BoletaDTO convertirDTO (Boleta boleta){
         BoletaDTO boletaDto = new BoletaDTO(); 
         boletaDto.setId(boleta.getId());
         boletaDto.setFecha(boleta.getFecha());
@@ -35,12 +35,12 @@ public class BoletaService {
     }
 
     public List<BoletaDTO> obtenerTodas(){
-        return boletaRepository.findAll().stream().map(this::convertirADTO).toList();
+        return boletaRepository.findAll().stream().map(this::convertirDTO).toList();
     }
 
     public BoletaDTO buscarPorId(Integer id){
         Boleta boleta = boletaRepository.findById(id).orElseThrow(()-> new RuntimeException("Boleta no encontrada"));
-        return convertirADTO(boleta);
+        return convertirDTO(boleta);
     }
 
     public Boleta guardarBoleta(Boleta boleta){
