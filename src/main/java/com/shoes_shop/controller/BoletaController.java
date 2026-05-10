@@ -57,7 +57,7 @@ public class BoletaController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<?> editarBoleta(@PathVariable Integer id,@Valid @RequestBody Boleta boleta){
+    public ResponseEntity<?> editarBoleta(@PathVariable Integer id,@RequestBody Boleta boleta){
         try {
             Boleta editada = boletaService.actualizarBoleta(id, boleta);
             return new ResponseEntity<>(editada,HttpStatus.OK);

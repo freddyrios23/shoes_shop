@@ -53,4 +53,7 @@ public class Zapatilla {
 
     @OneToMany(mappedBy = "zapatilla")
     private List<Boletas> boletas;
+
+    @OneToMany(mappedBy = "zapatilla")
+    private List<Colores> colores;
 }
