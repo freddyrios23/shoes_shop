@@ -20,7 +20,7 @@ public class ColorService {
     private ColorDTO convertirDTO (Color  color){
         ColorDTO colorDTO = new ColorDTO();
         colorDTO.setId(color.getId());
-        colorDTO.setColor(color.getColor());
+        colorDTO.setNombre(color.getColor());
         return colorDTO;
     }
 

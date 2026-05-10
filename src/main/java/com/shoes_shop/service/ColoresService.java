@@ -22,8 +22,10 @@ public class ColoresService {
     }
 
     public String guardarRelacion(Colores relacion) {
+
         coloresRepository.save(relacion);
 
-        return "La zapatilla " + relacion.getZapatilla().getNombre() + " fue asignada al color " + relacion.getColor().getColor();
+        return "La zapatilla " + relacion.getZapatilla().getNombre()
+                + " fue asignada al color " + relacion.getColor().getColor();
     }
 }

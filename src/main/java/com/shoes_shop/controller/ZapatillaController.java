@@ -10,13 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shoes_shop.DTO.ZapatillaDTO;
-import com.shoes_shop.model.Cliente;
 import com.shoes_shop.model.Zapatilla;
 import com.shoes_shop.service.ZapatillaService;
 
@@ -44,7 +42,7 @@ public class ZapatillaController {
             ZapatillaDTO zapatilla =  zapatillaService.buscarPorId(id);
             return new ResponseEntity<>(zapatilla,HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("no se encontro el la Zapatilla",HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("no se encontro la Zapatilla",HttpStatus.NOT_FOUND);
         }
     }
 
@@ -56,22 +54,12 @@ public class ZapatillaController {
             return new ResponseEntity<>("no se guardo la zapatilla",HttpStatus.BAD_REQUEST);
         }
     }
-
-    @PatchMapping({"/{id}"})
-    public ResponseEntity<?> editarZapatilla(@PathVariable Integer id,@RequestBody Zapatilla zapatilla){
-        try {
-            Zapatilla editado = zapatillaService.actualizarZapatilla(id, zapatilla);
-            return new ResponseEntity<>(editado,HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Zapatilla no encontrado",HttpStatus.NOT_FOUND);
-        }
-    }
         
-    @PutMapping("/{id}")
-    public ResponseEntity<?> actualizarZapatilla(@PathVariable Integer id, @Valid @RequestBody Zapatilla zapatilla){
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> editarZapatilla(@PathVariable Integer id, @Valid @RequestBody Zapatilla zapatilla){
         try {
-            Zapatilla newZapatilla = zapatillaService.actualizarZapatilla(id, zapatilla);
-            return new ResponseEntity<>(newZapatilla, HttpStatus.OK);
+            Zapatilla editada = zapatillaService.actualizarZapatilla(id, zapatilla);
+            return new ResponseEntity<>(editada, HttpStatus.OK);
 
         } catch (RuntimeException e) {
             return new ResponseEntity<>("zapatilla no encontrada", HttpStatus.NOT_FOUND);
