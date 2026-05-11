@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.shoes_shop.DTO.SexoDTO;
 import com.shoes_shop.model.Sexo;
-import com.shoes_shop.model.Zapatilla;
 import com.shoes_shop.repository.SexoRepository;
 
 import jakarta.transaction.Transactional;

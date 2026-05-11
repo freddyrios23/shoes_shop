@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shoes_shop.DTO.MetodoEnvioDTO;
-import com.shoes_shop.model.Marca;
 import com.shoes_shop.model.MetodoEnvio;
 import com.shoes_shop.service.MetodoEnvioService;
 

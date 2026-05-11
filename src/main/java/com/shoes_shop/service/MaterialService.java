@@ -5,14 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shoes_shop.DTO.BoletaDTO;
-import com.shoes_shop.DTO.MarcaDTO;
+
 import com.shoes_shop.DTO.MaterialDTO;
-import com.shoes_shop.model.Boleta;
-import com.shoes_shop.model.Boletas;
-import com.shoes_shop.model.Marca;
 import com.shoes_shop.model.Material;
-import com.shoes_shop.repository.BoletaRepository;
 import com.shoes_shop.repository.MaterialRepository;
 
 import jakarta.transaction.Transactional;

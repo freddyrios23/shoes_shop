@@ -5,9 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.shoes_shop.model.Boletas;
 import com.shoes_shop.model.Tallas;
-import com.shoes_shop.repository.BoletasRepository;
 import com.shoes_shop.repository.TallasRepository;
 
 import jakarta.transaction.Transactional;
@@ -24,6 +22,6 @@ public class TallasService {
 
     public String guardarRelacion(Tallas relacion){
         tallasRepository.save(relacion);
-        return "La talla" + relacion.getZapatilla().getTalla() + "fue agregada a la boleta" + relacion.getTalla().getId();
+        return "La talla" + relacion.getZapatilla() + "fue agregada a la boleta" + relacion.getTalla().getId();
     }
 }
