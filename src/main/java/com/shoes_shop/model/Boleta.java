@@ -53,4 +53,8 @@ public class Boleta {
     @ManyToOne
     @JoinColumn(name = "metodoEnvio_id")
     private MetodoEnvio metodoEnvio;
+
+    @ManyToOne
+    @JoinColumn(name = "metodoPago_id")
+    private MetodoPago metodoPago;
 }
