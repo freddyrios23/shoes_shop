@@ -4,10 +4,12 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
 
 @Data
+@Table(name = "tallas")
 public class Talla {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
