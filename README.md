@@ -59,3 +59,16 @@ Tablas principales:
 1. Clonar el repositorio:
 ```bash
 git clone https://github.com/TU_USUARIO/shoes_shop.git
+GET    /api/v1/clientes
+POST   /api/v1/clientes
+PUT    /api/v1/clientes/{id}
+DELETE /api/v1/clientes/{id}
+
+GET    /api/v1/zapatillas
+POST   /api/v1/zapatillas
+ Configuración del proyecto
+spring.datasource.url=jdbc:mysql://localhost:3306/db_shoes_shop
+spring.datasource.username=root
+spring.datasource.password=tu_password
+
+spring.jpa.hibernate.ddl-auto=update
