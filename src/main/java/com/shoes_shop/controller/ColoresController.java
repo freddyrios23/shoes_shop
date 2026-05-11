@@ -28,8 +28,12 @@ public class ColoresController {
     }
 
     @PostMapping
-    public ResponseEntity<?> agregarColores(@RequestBody Colores colores) {
-        return new ResponseEntity<>(coloresServics(colores), HttpStatus.CREATED);
+    public ResponseEntity<String> agregarColores(@RequestBody Colores colores) {
+        return new ResponseEntity<>(
+                coloresService.guardarRelacion(colores),
+                HttpStatus.CREATED
+        );
+
     }
 
 }
