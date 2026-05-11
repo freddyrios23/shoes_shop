@@ -11,6 +11,8 @@ import com.shoes_shop.DTO.RegionDTO;
 import com.shoes_shop.model.Region;
 import com.shoes_shop.service.RegionService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/v1/region")
 public class RegionController {
@@ -39,7 +41,7 @@ public class RegionController {
     }
 
     @PostMapping
-    public ResponseEntity<?> agregarRegion(@RequestBody Region region) {
+    public ResponseEntity<?> agregarRegion(@Valid @RequestBody Region region) {
         try {
             return new ResponseEntity<>(regionService.guardarRegion(region), HttpStatus.CREATED);
         } catch (Exception e) {
