@@ -30,7 +30,8 @@ public class ColorService {
     }
 
     public ColorDTO buscarPorId(Integer id){
-        Color color = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("Color no encontrado"));
+        Color color = colorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Color no encontrado"));
         return convertirDTO(color);
     }
 
@@ -39,7 +40,8 @@ public class ColorService {
     }
 
     public Color actualizarColor(Integer id, Color color){
-        Color colorDB = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("Color no encontrado en los registros"));
+        Color colorDB = colorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Color no encontrado en los registros"));
 
         if (color.getNombre() != null) {
             colorDB.setNombre(color.getNombre());
@@ -49,7 +51,8 @@ public class ColorService {
     }
 
     public String eliminarColor(Integer id){
-        Color color = colorRepository.findById(id).orElseThrow(() -> new RuntimeException("¡Imposible eliminar! Color con el id " + id + " no existe"));
+        Color color = colorRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("¡Imposible eliminar! Color con el id " + id + " no existe"));
 
         colorRepository.delete(color);
 
