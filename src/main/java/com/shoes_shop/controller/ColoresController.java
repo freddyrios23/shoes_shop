@@ -7,8 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.shoes_shop.model.Color;
-import com.shoes_shop.service.ColorService;
+import com.shoes_shop.model.Colores;
 import com.shoes_shop.service.ColoresService;
 
 @RestController
@@ -19,18 +18,18 @@ public class ColoresController {
     private ColoresService coloresService;
 
     @GetMapping
-    public ResponseEntity<List<Color>> todosLosColores() {
-        List<Color> colores = coloresService.obtenerTodos();
+    public ResponseEntity<List<Colores>> todosLosColores() {
+        List<Colores> colores = coloresService.obtenerTodos();
 
         if (colores.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(colores, HttpStatus.OK);
     }
-    
+
     @PostMapping
-    public ResponseEntity<?> agregarColor(@RequestBody Color color) {
-        return new ResponseEntity<>(coloresService.guardarColor(color), HttpStatus.CREATED);
+    public ResponseEntity<?> agregarColores(@RequestBody Colores colores) {
+        return new ResponseEntity<>(coloresServics(colores), HttpStatus.CREATED);
     }
 
 }
