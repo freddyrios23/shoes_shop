@@ -18,6 +18,4 @@ public class Talla {
     @Column(nullable = false)
     @Min(value = 1,message = "debe llevar al menos 1 zapatilla")
     private Double numero;
-
-    
 }
