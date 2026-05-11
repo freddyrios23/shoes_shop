@@ -21,7 +21,7 @@ import com.shoes_shop.service.MaterialService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/materiales")
+@RequestMapping("/api/v1/material")
 public class MaterialController {
     @Autowired
     private MaterialService materialService;
