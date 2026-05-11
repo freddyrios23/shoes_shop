@@ -8,12 +8,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
-
 @Data
 @Entity
-@Table(name = "colores_zapatillas")
-public class Colores {
-
+@Table(name = "materiales_zapatillas")
+public class Materiales {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,6 +21,7 @@ public class Colores {
     private Zapatilla zapatilla;
 
     @ManyToOne
-    @JoinColumn(name = "color_id")
-    private Color color;
+    @JoinColumn(name = "material_id")
+    private Material material;
+
 }

@@ -36,9 +36,6 @@ public class ZapatillaService {
         if (zapatilla.getNombre()!=null) {
             zapato.setNombre(zapatilla.getNombre());
         }
-        if (zapatilla.getTalla()!=null) {
-            zapato.setTalla(zapatilla.getTalla());
-        }
         if (zapatilla.getPrecio()!=null) {
             zapato.setPrecio(zapatilla.getPrecio());
         }
@@ -62,7 +59,6 @@ public class ZapatillaService {
         ZapatillaDTO zapatillaDTO = new ZapatillaDTO();
         zapatillaDTO.setId(zapatilla.getId());
         zapatillaDTO.setNombre(zapatilla.getNombre());
-        zapatillaDTO.setTalla(zapatilla.getTalla());
         zapatillaDTO.setPrecio(zapatilla.getPrecio());
 
         if (zapatilla.getMarca()!=null) {

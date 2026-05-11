@@ -7,10 +7,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "comunas")
-public class Comuna {
+@Table(name = "Metodo_envios")
+public class MetodoEnvio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,12 +33,18 @@ public class Comuna {
     @NotBlank(message = "El nombre es obligatorio")
     @Size(min=3,max=100,message = "El nombre debe tener entre 3 y 100 caracteres")
     @Column(nullable = false,length = 100)
-    private String nombre;
+    private String tipo;
 
-    @OneToMany(mappedBy = "comuna")
-    private List<Cliente> clientes;
+    @Column(nullable = false)
+    @Min(value = 1)
+    @Max(value = 999999)
+    private Integer costo;
 
-    @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
+    @Column(nullable = false)
+    @Min(value = 1)
+    @Max(value = 999999)
+    private Integer tiempoEntrega;
+
+    @OneToMany(mappedBy = "metodoEnvio")
+    private List<Boleta> boletas;
 }

@@ -3,8 +3,7 @@ package com.shoes_shop.DTO;
 import lombok.Data;
 
 @Data
-public class ColorDTO {
-
+public class TallaDTO {
     private Integer id;
-    private String nombre;
+    private Double numero;
 }

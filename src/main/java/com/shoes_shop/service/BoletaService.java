@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.shoes_shop.DTO.BoletaDTO;
 import com.shoes_shop.model.Boleta;
 import com.shoes_shop.model.Boletas;
-import com.shoes_shop.model.Zapatilla;
+
 
 import jakarta.transaction.Transactional;
 

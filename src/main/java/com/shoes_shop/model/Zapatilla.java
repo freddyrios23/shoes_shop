@@ -9,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
@@ -39,15 +40,10 @@ public class Zapatilla {
 
     @Column(nullable = false)
     @Min(value = 1)
-    @Max(value = 50)
-    private Integer talla;
-
-    @Column(nullable = false)
-    @Min(value = 1)
     @Max(value = 999999)
     private Integer precio;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "marca_id")
     private Marca marca;
 
@@ -56,4 +52,8 @@ public class Zapatilla {
 
     @OneToMany(mappedBy = "zapatilla")
     private List<Colores> colores;
+
+    @ManyToOne
+    @JoinColumn(name = "sexo_id")
+    private Sexo sexo;
 }

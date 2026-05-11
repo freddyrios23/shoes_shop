@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -23,22 +21,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "comunas")
-public class Comuna {
+@Table(name = "metodo_pago")
+public class MetodoPago {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "El nombre es obligatorio")
-    @Size(min=3,max=100,message = "El nombre debe tener entre 3 y 100 caracteres")
+    @NotBlank(message = "El tipo es obligatorio")
+    @Size(min=3,max=100,message = "El tipo debe tener entre 3 y 100 caracteres")
     @Column(nullable = false,length = 100)
-    private String nombre;
+    private String tipo;
 
-    @OneToMany(mappedBy = "comuna")
-    private List<Cliente> clientes;
-
-    @ManyToOne
-    @JoinColumn(name = "region_id")
-    private Region region;
+    @OneToMany(mappedBy = "metodoPago")
+    private List<Boleta> boletas;
 }
