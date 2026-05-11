@@ -3,9 +3,21 @@ package com.shoes_shop.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.shoes_shop.model.Tallas;
 import com.shoes_shop.repository.TallasRepository;
+
+
+import org.springframework.stereotype.Service;
+
+import com.shoes_shop.model.Boletas;
+import com.shoes_shop.model.Tallas;
+import com.shoes_shop.repository.BoletasRepository;
+import com.shoes_shop.repository.TallasRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+@Transactional
 
 public class TallasService {
     @Autowired
@@ -15,8 +27,9 @@ public class TallasService {
         return tallasRepository.findAll();
     }
 
-    public String guardarRelacion(Tallas relacion) {
-    tallasRepository.save(relacion);
-        return "La zapatilla " + relacion.getZapatilla().getNombre() + " fue asignada a la talla " + relacion.getTalla().getNumero();
+    public String guardarRelacion(Tallas tallas) {
+    tallasRepository.save(tallas);
+        return "La zapatilla " + tallas.getZapatilla().getNombre() + " fue asignada a la talla " + tallas.getTalla().getNumero();
     }
 }
+

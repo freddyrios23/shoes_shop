@@ -8,11 +8,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
-
 @Data
 @Entity
-@Table(name = "tallas_zapatillas")
-public class Tallas {
+@Table(name = "materiales_zapatillas")
+public class Materiales {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,11 +21,7 @@ public class Tallas {
     private Zapatilla zapatilla;
 
     @ManyToOne
-    @JoinColumn(name = "talla_id")
-    private Talla talla;
-
-    @ManyToOne
-    @JoinColumn(name = "numero")
-    private Tallas numero;
+    @JoinColumn(name = "material_id")
+    private Material material;
 
 }
