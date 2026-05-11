@@ -40,11 +40,6 @@ public class Zapatilla {
 
     @Column(nullable = false)
     @Min(value = 1)
-    @Max(value = 50)
-    private Integer talla;
-
-    @Column(nullable = false)
-    @Min(value = 1)
     @Max(value = 999999)
     private Integer precio;
 
