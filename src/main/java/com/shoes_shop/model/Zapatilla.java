@@ -52,4 +52,8 @@ public class Zapatilla {
 
     @OneToMany(mappedBy = "zapatilla")
     private List<Colores> colores;
+
+    @ManyToOne
+    @JoinColumn(name = "sexo_id")
+    private Sexo sexo;
 }
